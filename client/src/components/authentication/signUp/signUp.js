@@ -103,7 +103,7 @@ function SignUp() {
                         }
                     })
                 }
-            })
+            }).catch(err => (err))
         }
     }
 
