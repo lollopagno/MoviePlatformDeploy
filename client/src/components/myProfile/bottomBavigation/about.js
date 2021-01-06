@@ -102,11 +102,15 @@ function About() {
      * Action to check user data
      */
     const handleClickCheck = (event) => {
-
+        console.log(event.target.ariaLabel)
+        console.log(checkName)
+        console.log(disabledName)
         switch (event.target.ariaLabel) {
             case 'Name':
                 setCheckName(!checkName);
                 setDisabledName(!disabledName)
+                console.log(checkName)
+                console.log(disabledName)
                 break;
             case 'Username':
                 setCheckUsername(!checkUsername);
