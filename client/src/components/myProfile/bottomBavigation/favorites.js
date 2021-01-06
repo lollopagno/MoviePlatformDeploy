@@ -12,7 +12,6 @@ import Cards from "../../dashboard/utility/cards";
 import {Alert} from "@material-ui/lab";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Hidden from "@material-ui/core/Hidden";
 
 const useStyles = makeStyles((theme) => ({
     switchContainer: {
@@ -25,10 +24,7 @@ const useStyles = makeStyles((theme) => ({
     backdrop: {
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
-    },
-    searchButton: {
-        marginTop: theme.spacing(3)
-    },
+    }
 }));
 
 /**
@@ -86,30 +82,17 @@ function Favorites() {
                         label="Actors"
                     />
                 </FormGroup>
-                <Hidden xsDown implementation="css">
-                    <Button
-                        variant="contained"
-                        color="default"
-                        onClick={onClickSearch}
-                        startIcon={<SearchIcon/>}
-                    >
-                        Search
-                    </Button>
-                </Hidden>
-                <Hidden smUp implementation="css">
-                    <Button
-                        className={classes.searchButton}
-                        variant="contained"
-                        color="default"
-                        onClick={onClickSearch}
-                        startIcon={<SearchIcon/>}
-                    >
-                        Search
-                    </Button>
-                </Hidden>
+                <Button
+                    variant="contained"
+                    color="default"
+                    onClick={onClickSearch}
+                    startIcon={<SearchIcon/>}
+                >
+                    Search
+                </Button>
             </Grid>
             <Backdrop className={classes.backdrop} open={backDrop}>
-                <CircularProgress color="inherit" />
+                <CircularProgress color="inherit"/>
             </Backdrop>
             {cards}
             {alert && <Grid container justify={'center'}>
