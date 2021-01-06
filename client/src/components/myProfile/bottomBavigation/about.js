@@ -101,7 +101,7 @@ function About() {
     /**
      * Action to check user data
      */
-    const handleChangeCheck = (event) => {
+    const handleClickCheck = (event) => {
 
         switch (event.target.ariaLabel) {
             case 'Name':
@@ -236,7 +236,7 @@ function About() {
                             color={'primary'}
                             className={classes.check}
                             checked={checkName}
-                            onChange={handleChangeCheck}
+                            onClick={handleClickCheck}
                             inputProps={{'aria-label': 'Name'}}
                         />
                     </Grid>
@@ -271,7 +271,7 @@ function About() {
                             color={'primary'}
                             className={classes.check}
                             checked={checkUsername}
-                            onChange={handleChangeCheck}
+                            onClick={handleClickCheck}
                             inputProps={{'aria-label': 'Username'}}
                         />
                     </Grid>
@@ -306,7 +306,7 @@ function About() {
                             color={'primary'}
                             className={classes.check}
                             checked={checkEmail}
-                            onChange={handleChangeCheck}
+                            onClick={handleClickCheck}
                             inputProps={{'aria-label': 'Email'}}
                         />
                     </Grid>
