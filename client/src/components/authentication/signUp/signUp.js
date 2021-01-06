@@ -87,7 +87,7 @@ function SignUp() {
                 } else {
                     setErrorUsername(false)
                 }
-            })
+            }).catch(err => (err))
         }
         // Actions for email
         else if (name === EMAIL) {
