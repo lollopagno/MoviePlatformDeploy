@@ -242,6 +242,7 @@ function About() {
                             checked={checkName}
                             onClick={handleClickCheck}
                             inputProps={{'aria-label': 'Name'}}
+                            style={{cursor:'pointer'}}
                         />
                     </Grid>
                     <Grid container justify={'center'} className={classes.contText}>
@@ -277,6 +278,7 @@ function About() {
                             checked={checkUsername}
                             onClick={handleClickCheck}
                             inputProps={{'aria-label': 'Username'}}
+                            style={{cursor:'pointer'}}
                         />
                     </Grid>
                     <Grid container justify={'center'} className={classes.contText}>
@@ -312,6 +314,7 @@ function About() {
                             checked={checkEmail}
                             onClick={handleClickCheck}
                             inputProps={{'aria-label': 'Email'}}
+                            style={{cursor:'pointer'}}
                         />
                     </Grid>
 
