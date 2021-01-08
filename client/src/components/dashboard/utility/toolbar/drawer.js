@@ -8,7 +8,7 @@ import GradeIcon from "@material-ui/icons/Grade";
 import FiberNewIcon from "@material-ui/icons/FiberNew";
 import ListItemText from "@material-ui/core/ListItemText";
 import {AccountCircle} from "@material-ui/icons";
-import React from "react";
+import React, {useState} from "react";
 import Hidden from "@material-ui/core/Hidden";
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import {requestMovies} from "../../../../requests/content/movies";
@@ -25,6 +25,11 @@ import {setAlert} from "../../../../redux/reducer/signInReducer";
 import {socket} from "../../../../requests/socket";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
 
 const MOVIES = 'Movies'
 const TV = 'TV'

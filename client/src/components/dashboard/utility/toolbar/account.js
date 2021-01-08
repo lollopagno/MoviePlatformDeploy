@@ -10,6 +10,12 @@ import history from "../../../../history";
 import {setAlert} from "../../../../redux/reducer/signInReducer";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {socket} from '../../../../requests/socket'
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   account : {
@@ -38,6 +44,7 @@ function Account() {
     // State for Menu item account
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(1);
+    const [open, setOpen] = useState(false)
 
     const onClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -45,6 +52,24 @@ function Account() {
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const onDialogCancel = () => setOpen(false)
+
+    const onOpenDialog = () => {
+        setOpen(true);
+    };
+
+    /**
+     * Action to click dialog
+     */
+    const onDialogExit = () => {
+        setOpen(false);
+        store.dispatch(resetUser())
+        store.dispatch(deleteToken())
+        socket.disconnect()
+        store.dispatch(setAlert({alert: 'Sign out completed!', isSuccess: true}))
+        history.push('/signIn')
     };
 
     /**
@@ -59,11 +84,7 @@ function Account() {
         if (event.currentTarget.id === ID_MY_PROFILE) {
             history.push('/myProfile#favorite')
         } else if (event.currentTarget.id === ID_LOG_OUT) {
-            store.dispatch(resetUser())
-            store.dispatch(deleteToken())
-            socket.disconnect()
-            store.dispatch(setAlert({alert: 'Sign out completed!', isSuccess: true}))
-            history.push('/signIn')
+            onOpenDialog()
         }
     }
 
@@ -92,6 +113,27 @@ function Account() {
                     </MenuItem>
                 ))}
             </Menu>
+            <Dialog
+                open={open}
+                onClose={onDialogCancel}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Exit the application?"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to quit?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={onDialogCancel} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={onDialogExit} color="primary" autoFocus>
+                        Ok, exit
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }
