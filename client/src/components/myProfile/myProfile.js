@@ -61,6 +61,7 @@ function MyProfile() {
     const noticeList = useSelector(state => state.socket.list)
     const notice = useSelector(state => state.socket.notice)
     const [isNotice, setIsNotice] = useState(false)
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         socket.on('notice new content added', (data) => {
@@ -75,16 +76,23 @@ function MyProfile() {
     const paperNotice = (noticeList.length !== 0) ? noticeList.slice(0).reverse().map((item, index) =>
         <PaperComponent notice={item} index={index} key={item.id}/>) : []
 
+    const onDialogCancel = () => setOpen(false)
+
+    const onOpenDialog = () => {
+        setOpen(true);
+    };
+
     /**
-     * Log out
+     * Action to click dialog
      */
-    const logOut = () => {
+    const onDialogExit = () => {
+        setOpen(false);
         store.dispatch(resetUser())
         store.dispatch(deleteToken())
         socket.disconnect()
         store.dispatch(setAlert({alert: 'Sign out completed!', isSuccess: true}))
         history.push('/signIn')
-    }
+    };
 
     /**
      * Action to click home icon
@@ -117,7 +125,7 @@ function MyProfile() {
                             <NotificationsIcon/>
                         </Badge>
                     </IconButton>
-                    <IconButton onClick={logOut}>
+                    <IconButton onClick={onOpenDialog}>
                         <MeetingRoomIcon style={{color: 'white'}}/>
                     </IconButton>
                 </Toolbar>
@@ -152,6 +160,27 @@ function MyProfile() {
                     {isNotice && <Notice notices={paperNotice}/>}
                 </Grid>
             </Grid>
+            <Dialog
+                open={open}
+                onClose={onDialogCancel}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Exit the application?"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to quit?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={onDialogCancel} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={onDialogExit} color="primary" autoFocus>
+                        Ok, exit
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     )
 }
