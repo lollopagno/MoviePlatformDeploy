@@ -37,9 +37,7 @@ function RatingContent(props) {
         setValue(event.currentTarget.value)
 
         requestRating.update(contentId, userId, category, event.currentTarget.value).then(() => {
-        }).catch(err => {
-            console.log(err.response.data.message)
-        })
+        }).catch(err => err)
     }
 
     return (

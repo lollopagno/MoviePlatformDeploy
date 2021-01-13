@@ -54,7 +54,6 @@ function SignIn() {
 
     useEffect(() => {
 
-        console.log("[SIGN IN] USE EFFECT ")
         // Check tp show alert
         if (alertRedux.alert !== undefined && alertRedux.alert.length > 0) {
             setInfoAlert(alertRedux.alert)

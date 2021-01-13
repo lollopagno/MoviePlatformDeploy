@@ -61,7 +61,6 @@ resendTokenEmail = (req, res) => {
 
         // Send email
         email.sendEmail(user.email, user.name, tokenEmail.token).then(() => {
-            console.log("[SERVER] Resend email.")
             return utils.requestJsonSuccess(res, codeStatus.OK, 'A verification email has been resent to ' + user.email + '.', utils.getCleanUser(user), tokenEmail.token)
         })
     })
@@ -83,8 +82,6 @@ checkToken = (req, res) => {
             if (err) return utils.requestJsonFailed(res, codeStatus.badRequest, '')
 
             const token = utils.generateToken(user);
-            console.log("[New token created (CheckToken)] " + token)
-            console.log("[SERVER] Check token user.")
             return utils.requestJsonSuccess(res, codeStatus.OK, 'Check user completed!', utils.getCleanUser(user), token)
         });
     });

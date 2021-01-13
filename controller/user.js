@@ -32,8 +32,6 @@ signIn = (req, res) => {
             if (!user.isVerified) return utils.requestJsonFailed(res, codeStatus.unauthorized, 'Your account has not been verified.')
 
             const token = utils.generateToken(user);
-            console.log("[New token created (signIn)] " + token)
-            console.log("[SERVER] Authentication user completed!")
             return utils.requestJsonSuccess(res, codeStatus.created, 'Sign in completed!', utils.getCleanUser(user), token)
         });
     });
@@ -102,8 +100,6 @@ signUp = (req, res) => {
             // Saved new user failed
             if (err) return utils.requestJsonFailed(res, codeStatus.badRequest, err.message)
 
-            console.log("[SERVER] User created!")
-
             // CREATE token email document
             const tokenEmail = new EmailSchema({
                 _userId: user._id,
@@ -124,10 +120,8 @@ signUp = (req, res) => {
                 if (err) return utils.requestJsonFailed(res, codeStatus.badRequest, err.message)
             })
 
-            console.log("[SERVER] Token email created!")
             // Send email
             email.sendEmail(user.email, user.name, tokenEmail.token).then(() => {
-                console.log("[SERVER] Verification email has been sent!")
                 return utils.requestJsonSuccess(res, codeStatus.OK, 'A verification email has been sent to ' + user.email + '.', utils.getCleanUser(user), tokenEmail.token)
             })
         })

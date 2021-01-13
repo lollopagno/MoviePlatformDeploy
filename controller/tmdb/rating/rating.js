@@ -42,13 +42,9 @@ module.exports = {
                         }
                     }
                 })
-            console.log("[CONTENT ADDED]")
             return utils.requestJsonSuccess(res, codeStatus.OK)
 
-        } else {
-            console.log("[CONTENT UPDATED]")
-            return utils.requestJsonSuccess(res, codeStatus.OK)
-        }
+        } else return utils.requestJsonSuccess(res, codeStatus.OK)
     },
 
     /**

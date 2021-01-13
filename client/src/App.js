@@ -16,11 +16,8 @@ function App() {
 
     useEffect(() => {
 
-        console.log("[APP] USE EFFECT APP ")
-
         // Check if token is present
         if (token || token !== undefined) {
-            console.log("[APP] THERE IS A TOKEN")
 
             // Check if token is valid
             authentication.meFromToken(headers).then(res => {
@@ -28,7 +25,6 @@ function App() {
 
             }).catch((err) => {
                 // Token expired
-                console.log("[APP] ERR TOKEN EXPIRED")
                 store.dispatch(meFromTokenFailure())                // Reset token redux
                 store.dispatch(resetUser())                         // Reset user redux
                 store.dispatch(setAlert({alert: err.response.data.message, isSuccess: false})) // Set error redux

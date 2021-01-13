@@ -11,8 +11,6 @@ mongoose
         useUnifiedTopology: true,
         useCreateIndex: true
     }).then(console.info("Connection Db Accepted"))
-    .catch(e => {
-        console.error('Connection error', e.message)
-    })
+    .catch(e => console.error('Connection error', e.message))
 
 module.exports = mongoose.connection
