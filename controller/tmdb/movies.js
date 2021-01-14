@@ -42,7 +42,7 @@ popular = (req, res) => {
         .then(contents => {
             return utils.requestJsonSuccess(res, codeStatus.OK, 'Movies popular found!', contents[0].concat(contents[1]))
         }).catch(() => {
-        return utils.requestJsonFailed(res, codeStatus.badRequest, 'No internet connection!')
+        return utils.requestJsonFailed(res, codeStatus.badRequest, 'The search did not give any results!')
     })
 }
 
@@ -62,7 +62,7 @@ topRated = (req, res) => {
         .then(contents => {
             return utils.requestJsonSuccess(res, codeStatus.OK, 'Movies top rated found!', contents[0].concat(contents[1]))
         }).catch(() => {
-        return utils.requestJsonFailed(res, codeStatus.badRequest, 'No internet connection!')
+        return utils.requestJsonFailed(res, codeStatus.badRequest, 'The search did not give any results!')
     })
 }
 
@@ -82,7 +82,7 @@ upcoming = (req, res) => {
         .then(contents => {
             return utils.requestJsonSuccess(res, codeStatus.OK, 'Movies upcoming found!', contents[0].concat(contents[1]))
         }).catch(() => {
-        return utils.requestJsonFailed(res, codeStatus.badRequest, 'No internet connection!')
+        return utils.requestJsonFailed(res, codeStatus.badRequest, 'The search did not give any results!')
     })
 }
 
@@ -103,7 +103,7 @@ search = (req, res) => {
         .then(contents => {
             return  utils.requestJsonSuccess(res, codeStatus.OK, 'Movies found', contents[0].concat(contents[1]))
         }).catch(() => {
-        return utils.requestJsonFailed(res, codeStatus.badRequest,'No internet connection!')
+        return utils.requestJsonFailed(res, codeStatus.badRequest, 'The search did not give any results!')
     })
 }
 
