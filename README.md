@@ -1,4 +1,4 @@
-M7oviePlatformDeploy
+MoviePlatformDeploy
 
 Heroku Command Cli:
 - `heroku run bash -a name_app` 
